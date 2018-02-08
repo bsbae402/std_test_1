@@ -1,18 +1,7 @@
 #include <stdlib.h>
 
-#ifdef _STRING_H
-#error "Do not #include <string.h>. You will get a ZERO."
-#endif
-
-#ifdef _STRINGS_H
-#error "Do not #include <strings.h>. You will get a ZERO."
-#endif
-
-#ifdef _CTYPE_H
-#error "Do not #include <ctype.h>. You will get a ZERO."
-#endif
-
-#include "hw1.h"
+#include "validargs.h"
+#include "endian_swap.h"
 #include "debug.h"
 
 /*
@@ -34,17 +23,13 @@ int main(int argc, char **argv)
         return EXIT_FAILURE; //// <- do I need this?
     }
 
-    debug("Options: 0x%X", global_options);
-
-    if(global_options & HELP_MODE) {
+    if(help_option) {
         USAGE(*argv, EXIT_SUCCESS);
         // return EXIT_SUCCESS; //// <- don't need this because USAGE(?, EXIT_SUCCESS) will call exit()
     }
 
-    if(global_options & DISASSEMBLE_MODE)
-        disassemble();
-    else
-        assemble();
+    // do swap
+    endian_swap(wordsize);
 
     return EXIT_SUCCESS;
 }
