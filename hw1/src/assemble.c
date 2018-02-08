@@ -185,12 +185,21 @@ static int oneLine(unsigned int addr)
     unsigned int value = ins.value;
     //printf("instruction: 0x%08x\n", value);
 
-    // Output instruction in little-endian format:
     // TODO: handle endianness.
-    putchar(value & 0xff);
-    putchar((value & 0xff00) >> 8);
-    putchar((value & 0xff0000) >> 16);
-    putchar((value & 0xff000000) >> 24);
+    // big endian
+    if(global_options & BIG_ENDIAN_MODE) {
+        putchar((value & 0xff000000) >> 24);
+        putchar((value & 0xff0000) >> 16);
+        putchar((value & 0xff00) >> 8);
+        putchar(value & 0xff);
+    }
+    else {
+        // Output instruction in little-endian format:
+        putchar(value & 0xff);
+        putchar((value & 0xff00) >> 8);
+        putchar((value & 0xff0000) >> 16);
+        putchar((value & 0xff000000) >> 24);
+    }
 
     return 0;
 }

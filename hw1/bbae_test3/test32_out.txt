@@ -1,0 +1,4 @@
+jal 0x654320
+break 0xdddd
+bgtz $9,100
+srl $8,$9,10

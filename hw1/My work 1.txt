@@ -1,1 +1,9 @@
 My work 1
+
+Apparently, if you use a baseaddr once, you can not restore the same original asm instruction list.
+
+Tests of bbae_test1 and bbae_test2 have nothing to do with base address.
+
+List of big-endian input files:
+- test22_in.bin
+- test33_in.bin

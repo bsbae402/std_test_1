@@ -35,6 +35,15 @@ static int read_int()
     	buf[i] = c;
     }
     //printf("%02x %02x %02x %02x\n", buf[0], buf[1], buf[2], buf[3]);
+    // big endian (word: 4byte)
+    if(global_options & BIG_ENDIAN_MODE) {
+        int ch;
+        for(int i = 0; i < 2; i++){
+            ch = buf[i];
+            buf[i] = buf[3-i];
+            buf[3-i] = ch;
+        }
+    }
     int r = 0;
     for(int i = 0; i < 4; i++)
 	   r = (r << 8) | buf[3-i];
