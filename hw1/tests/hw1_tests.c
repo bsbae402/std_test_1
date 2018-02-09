@@ -2,6 +2,7 @@
 #include <criterion/logging.h>
 #include "hw1.h"
 
+
 Test(hw1_tests_suite, validargs_help_test) {
     int argc = 2;
     char *argv[] = {"bin/hw1", "-h", NULL};
@@ -10,9 +11,9 @@ Test(hw1_tests_suite, validargs_help_test) {
     unsigned int opt = global_options;
     unsigned int flag = 0x1;
     cr_assert_eq(ret, exp_ret, "Invalid return for valid args.  Got: %d | Expected: %d",
-		 ret, exp_ret);
+         ret, exp_ret);
     cr_assert_eq(opt & flag, flag, "Least significant bit not set for -h. Got: %d",
-		 opt);
+         opt);
 }
 
 Test(hw1_tests_suite, validargs_disassem_test) {
@@ -23,9 +24,9 @@ Test(hw1_tests_suite, validargs_disassem_test) {
     unsigned int opt = global_options;
     unsigned int flag = 0x2;
     cr_assert_eq(ret, exp_ret, "Invalid return for valid args.  Got: %d | Expected: %d",
-		 ret, exp_ret);
+         ret, exp_ret);
     cr_assert_eq(opt & flag, flag, "Disassemble bit wasn't set. Got: %d",
-		 opt);
+         opt);
 }
 
 Test(hw1_tests_suite, help_system_test) {
@@ -38,5 +39,5 @@ Test(hw1_tests_suite, help_system_test) {
     int return_code = WEXITSTATUS(system(cmd));
 
     cr_assert_eq(return_code, EXIT_SUCCESS, "Program exited with %d instead of EXIT_SUCCESS",
-		 return_code);
+         return_code);
 }
