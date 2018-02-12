@@ -1,0 +1,5 @@
+rfe
+jal 0x654321
+break 0xdddd
+bgtz $9,5000
+srl $8,$9,10
